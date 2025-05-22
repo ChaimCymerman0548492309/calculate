@@ -26,7 +26,7 @@ app.use((req, res, next) => {
   }
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'your-secret-key-here');
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'SECRET_KEY');
     req.user = decoded;
     next();
   } catch (err) {

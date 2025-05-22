@@ -19,11 +19,19 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UserRegister'
+            example:
+              email: user@example.com
+              password: password123
+              name: John Doe
       responses:
         '201':
           description: User created
         '400':
           description: Invalid input or user already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
       x-swagger-router-controller: Default
 
   /login:
@@ -36,11 +44,25 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UserLogin'
+            example:
+              email: user@example.com
+              password: password123
       responses:
         '200':
           description: Login successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
         '400':
           description: Invalid credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
       x-swagger-router-controller: Default
 
   /calculate:
@@ -56,12 +78,14 @@ paths:
             type: string
             enum: [add, subtract, multiply, divide]
       requestBody:
-        description: The two numbers for calculation
         required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/CalculateBody'
+            example:
+              number1: 10
+              number2: 5
       responses:
         '200':
           description: Successful operation
@@ -70,9 +94,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/CalculationResult'
         '400':
-          description: Invalid input
+          description: Invalid input or missing operation header
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '401':
           description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
       security:
         - JWT: []
       x-swagger-router-controller: Default
@@ -88,10 +120,7 @@ components:
   schemas:
     UserRegister:
       type: object
-      required:
-        - email
-        - password
-        - name
+      required: [email, password, name]
       properties:
         email:
           type: string
@@ -103,9 +132,7 @@ components:
 
     UserLogin:
       type: object
-      required:
-        - email
-        - password
+      required: [email, password]
       properties:
         email:
           type: string
@@ -115,9 +142,7 @@ components:
 
     CalculateBody:
       type: object
-      required:
-        - number1
-        - number2
+      required: [number1, number2]
       properties:
         number1:
           type: number
@@ -131,3 +156,17 @@ components:
           type: number
         userId:
           type: integer
+        operation:
+          type: string
+        operands:
+          type: array
+          items:
+            type: number
+
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+      example:
+        message: "Invalid input: number1 must be a number"
