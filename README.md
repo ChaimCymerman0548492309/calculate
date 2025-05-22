@@ -319,9 +319,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 👤 Author
 
 **Chaim Cymerman**
-- 📧 Email: chaim@example.com
+- 📧 Email: chaimcymerman0548492309@gmail.com
 - 🌍 Location: Israel
-- 💼 LinkedIn: [linkedin.com/in/chaim-cymerman](https://linkedin.com/in/chaim-cymerman)
+- 💼 LinkedIn: [linkedin.com/in/chaim-cymerman]([https://linkedin.com/in/chaim-cymerman](https://www.linkedin.com/in/chaim-cymerman-94961423a/))
 
 ---
 
