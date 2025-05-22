@@ -1,0 +1,133 @@
+openapi: 3.0.0
+info:
+  title: Calculator API
+  description: API for basic math operations with JWT authentication
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:8080
+    description: Local development server
+
+paths:
+  /register:
+    post:
+      summary: Register a new user
+      operationId: register
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRegister'
+      responses:
+        '201':
+          description: User created
+        '400':
+          description: Invalid input or user already exists
+      x-swagger-router-controller: Default
+
+  /login:
+    post:
+      summary: Login user
+      operationId: login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserLogin'
+      responses:
+        '200':
+          description: Login successful
+        '400':
+          description: Invalid credentials
+      x-swagger-router-controller: Default
+
+  /calculate:
+    post:
+      summary: Perform a mathematical operation
+      operationId: calculate
+      parameters:
+        - name: operation
+          in: header
+          description: The operation to perform
+          required: true
+          schema:
+            type: string
+            enum: [add, subtract, multiply, divide]
+      requestBody:
+        description: The two numbers for calculation
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CalculateBody'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CalculationResult'
+        '400':
+          description: Invalid input
+        '401':
+          description: Unauthorized
+      security:
+        - JWT: []
+      x-swagger-router-controller: Default
+
+components:
+  securitySchemes:
+    JWT:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token for authentication
+
+  schemas:
+    UserRegister:
+      type: object
+      required:
+        - email
+        - password
+        - name
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+        name:
+          type: string
+
+    UserLogin:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+
+    CalculateBody:
+      type: object
+      required:
+        - number1
+        - number2
+      properties:
+        number1:
+          type: number
+        number2:
+          type: number
+
+    CalculationResult:
+      type: object
+      properties:
+        result:
+          type: number
+        userId:
+          type: integer
