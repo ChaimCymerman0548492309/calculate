@@ -309,6 +309,58 @@ The documentation includes:
 5. Open a Pull Request
 
 ---
+---
+
+## 🐳 Run with Docker & Docker Compose
+
+### Prerequisites
+
+- Docker
+- Docker Compose
+
+### Build & Run with Docker
+
+```bash
+docker build -t calculator-api .
+docker run -p 8080:8080 calculator-api
+```
+
+### Run with Docker Compose
+
+```bash
+docker-compose up --build
+```
+
+> API: http://localhost:8080  
+> Swagger UI: http://localhost:8080/docs
+
+### Persisting User Data
+
+Mount the `data/` folder as a volume in `docker-compose.yml`:
+
+```yaml
+volumes:
+  - ./data:/app/data
+```
+
+---
+
+## 📁 Project Structure
+
+```
+calculator-api/
+├── api/
+├── controllers/
+├── data/
+├── tests/
+├── Dockerfile
+├── docker-compose.yml
+├── index.js
+├── package.json
+└── README.md
+```
+
+---
 
 ## 📄 License
 
@@ -337,6 +389,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 <div align="center">
 
 **🎉 Ready to Calculate! 🎉**
+
 
 *This API is production-ready, fully tested, and thoroughly documented.*
 
