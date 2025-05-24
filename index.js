@@ -20,7 +20,6 @@ app.use((req, res, next) => {
   const token =
     req.headers.authorization?.split(' ')[1] ||
     req.cookies?.token;
-console.log(token);
 
   if (!token) {
     return res.status(401).json({ message: 'Unauthorized: No token provided' });
@@ -31,7 +30,6 @@ console.log(token);
     req.user = decoded;
     next();
   } catch (err) {
-    console.log(err);
     
     return res.status(401).json({
       message: err.name === 'TokenExpiredError'
