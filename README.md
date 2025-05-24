@@ -46,7 +46,7 @@ cp .env.example .env
 Create a `.env` file in the root directory:
 
 ```env
-JWT_SECRET=your-super-secret-jwt-key
+JWT_SECRET=SECRET_KEY
 NODE_ENV=development
 PORT=8080
 ```

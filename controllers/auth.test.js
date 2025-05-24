@@ -60,7 +60,7 @@ beforeAll(async () => {
   it('should reject expired JWT token', async () => {
     const expiredToken = jwt.sign(
       { userId: 999, email: 'expired@example.com' },
-      process.env.JWT_SECRET || 'your-secret-key-here',
+      process.env.JWT_SECRET || 'SECRET_KEY',
       { expiresIn: '-10s' }
     );
 

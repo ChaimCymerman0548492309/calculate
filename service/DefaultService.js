@@ -5,7 +5,7 @@ const path = require('path');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
-const SECRET_KEY = process.env.JWT_SECRET || 'your-secret-key-here';
+const SECRET_KEY = process.env.JWT_SECRET || 'SECRET_KEY';
 const usersFile = path.join(__dirname, '../data/users.json');
 
 /**

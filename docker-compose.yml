@@ -10,4 +10,4 @@ services:
       - /app/node_modules
     environment:
       - NODE_ENV=development
-      - JWT_SECRET=super-secret-jwt
+      - JWT_SECRET=SECRET_KEY
