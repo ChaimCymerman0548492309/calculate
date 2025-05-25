@@ -5,6 +5,8 @@ info:
   version: 1.0.0
 
 servers:
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/chaim/CalculatorAPI/1.0.0
   - url: http://localhost:8080
     description: Local development server
 
@@ -20,12 +22,25 @@ paths:
             schema:
               $ref: '#/components/schemas/UserRegister'
             example:
-              email: user@example.com
+              email: user1@example.com
               password: password123
               name: John Doe
       responses:
         '201':
           description: User created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  userId:
+                    type: integer
+                  name:
+                    type: string
+                  email:
+                    type: string
+                  token:
+                    type: string
         '400':
           description: Invalid input or user already exists
           content:
@@ -55,6 +70,12 @@ paths:
               schema:
                 type: object
                 properties:
+                  userId:
+                    type: integer
+                  name:
+                    type: string
+                  email:
+                    type: string
                   token:
                     type: string
         '400':
@@ -92,7 +113,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CalculationResult'
+                type: object
+                properties:
+                  result:
+                    type: number
         '400':
           description: Invalid input or missing operation header
           content:
@@ -148,20 +172,6 @@ components:
           type: number
         number2:
           type: number
-
-    CalculationResult:
-      type: object
-      properties:
-        result:
-          type: number
-        userId:
-          type: integer
-        operation:
-          type: string
-        operands:
-          type: array
-          items:
-            type: number
 
     ErrorResponse:
       type: object

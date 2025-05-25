@@ -28,5 +28,29 @@
     "email": "63user@example.com",
     "password": "$2b$10$hQPJs/rXWyEEIm5zoVd8U.JC0EswXL4pw8aH.AzDtYB27I6vMNtlG",
     "name": "Test User"
+  },
+  {
+    "id": 6,
+    "email": "631user@example.com",
+    "password": "$2b$10$KGWn9eDqCJoEp6e2fdq1B.x9SVHVsDcjjrLYqilyZD6KIr.abY.uq",
+    "name": "Test User"
+  },
+  {
+    "id": 7,
+    "email": "user1@example.com",
+    "password": "$2b$10$sQco3cYDD38ZTMjl1i1g9uVxS4hVkHOpk5vRy.vUuRWwIWOd4h.NS",
+    "name": "John Doe"
+  },
+  {
+    "id": 8,
+    "email": "user1000@example.com",
+    "password": "$2b$10$hT.I7sC2Dd17Gno.JprYb.Pu8CC.WfmWHG/FdQnF3xlXWMXyCYo/6",
+    "name": "John Doe"
+  },
+  {
+    "id": 9,
+    "email": "user1@esxample.com",
+    "password": "$2b$10$OS6r1AitFiyZYq5yKyZN3.7lFGjd01tjIc2lN1wH4DYPbEil8JFbC",
+    "name": "John Doe"
   }
 ]

@@ -9,6 +9,24 @@ const oas3Tools = require('oas3-tools');
 const app = express();
 app.use(cookieParser());
 
+
+// Swagger router configuration
+const options = {
+  routing: {
+    controllers: path.join(__dirname, './controllers'),
+    useStubs: process.env.NODE_ENV === 'development'
+  }
+};
+
+const expressAppConfig = oas3Tools.expressAppConfig(
+  path.join(__dirname, 'api/openapi.yaml'),
+  options
+);
+
+const configuredApp = expressAppConfig.getApp();
+
+
+
 /**
  * Middleware for JWT authentication.
  * Skips authentication for public routes.
@@ -38,7 +56,8 @@ app.use((req, res, next) => {
     });
   }
 });
-
+// Attach the OpenAPI-configured app
+app.use(configuredApp);
 /**
  * Middleware to ensure 'operation' header is present for /calculate route.
  */
@@ -54,24 +73,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// Swagger router configuration
-const options = {
-  routing: {
-    controllers: path.join(__dirname, './controllers'),
-    useStubs: process.env.NODE_ENV === 'development'
-  }
-};
 
-// Create express app from OpenAPI YAML definition
-const expressAppConfig = oas3Tools.expressAppConfig(
-  path.join(__dirname, 'api/openapi.yaml'),
-  options
-);
-
-const configuredApp = expressAppConfig.getApp();
-
-// Attach the OpenAPI-configured app
-app.use(configuredApp);
 
 // Start the server
 if (require.main === module) {
