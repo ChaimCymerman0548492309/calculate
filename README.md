@@ -30,7 +30,7 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/calculator-api.git
+git clone https://github.com/ChaimCymerman0548492309/calculator-api.git
 cd calculator-api
 
 # Install dependencies
